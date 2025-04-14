@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground h-screen overflow-hidden;
+  }
+  
+  .message-area {
+    @apply scrollbar-thin;
+  }
+  
+  .message-area::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  
+  .message-area::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  .message-area::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  
+  .message-area::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@layer components {
+  .message-system {
+    @apply text-center py-1 px-4 text-xs text-gray-500 bg-gray-100 rounded-full inline-block mx-auto;
+  }
+  
+  .message-join {
+    @apply text-center py-1 px-4 text-xs text-green-700 bg-green-50 rounded-full inline-block mx-auto;
+  }
+  
+  .message-leave {
+    @apply text-center py-1 px-4 text-xs text-gray-500 bg-gray-100 rounded-full inline-block mx-auto;
+  }
+  
+  .message-others {
+    @apply flex flex-col max-w-[85%] space-y-1 self-start;
+  }
+  
+  .message-self {
+    @apply flex flex-col max-w-[85%] space-y-1 self-end;
+  }
+  
+  .message-bubble-others {
+    @apply bg-white rounded-lg rounded-tl-none py-2 px-3 text-gray-800 shadow-sm border border-gray-200;
+  }
+  
+  .message-bubble-self {
+    @apply bg-primary bg-opacity-10 rounded-lg rounded-tr-none py-2 px-3 text-gray-800 shadow-sm border border-primary border-opacity-20;
+  }
+}
