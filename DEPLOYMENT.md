@@ -12,7 +12,7 @@ This document provides instructions for deploying the TextRoom chat application 
    - [Replit Deployment](#replit-deployment)
    - [Vercel Deployment](#vercel-deployment)
    - [Heroku Deployment](#heroku-deployment)
-   - [Self-Hosting](#self-hosting)
+   - [Self-Hosting](#self-~hosting~)
 6. [WebSocket Configuration](#websocket-configuration)
 7. [Post-Deployment Verification](#post-deployment-verification)
 8. [Feature Configuration](#feature-configuration)
