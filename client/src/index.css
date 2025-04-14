@@ -20,29 +20,29 @@
   }
   
   .message-area::-webkit-scrollbar-track {
-    @apply bg-gray-100 dark:bg-gray-800;
+    @apply bg-gray-100 dark:bg-gray-900;
   }
   
   .message-area::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+    @apply bg-gray-300 dark:bg-gray-700 rounded-full;
   }
   
   .message-area::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-400 dark:bg-gray-500;
+    @apply bg-gray-400 dark:bg-gray-600;
   }
 }
 
 @layer components {
   .message-system {
-    @apply text-center py-1 px-4 text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-full inline-block mx-auto;
+    @apply text-center py-1 px-4 text-xs text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full inline-block mx-auto;
   }
   
   .message-join {
-    @apply text-center py-1 px-4 text-xs text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/30 rounded-full inline-block mx-auto;
+    @apply text-center py-1 px-4 text-xs text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/40 rounded-full inline-block mx-auto;
   }
   
   .message-leave {
-    @apply text-center py-1 px-4 text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-full inline-block mx-auto;
+    @apply text-center py-1 px-4 text-xs text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full inline-block mx-auto;
   }
   
   .message-others {
@@ -54,11 +54,11 @@
   }
   
   .message-bubble-others {
-    @apply bg-white dark:bg-gray-800 rounded-lg rounded-tl-none py-2 px-3 text-gray-800 dark:text-gray-200 shadow-sm border border-gray-200 dark:border-gray-700;
+    @apply bg-white dark:bg-gray-900 rounded-lg rounded-tl-none py-2 px-3 text-gray-800 dark:text-gray-100 shadow-sm border border-gray-200 dark:border-gray-800;
   }
   
   .message-bubble-self {
-    @apply bg-primary bg-opacity-10 dark:bg-opacity-20 rounded-lg rounded-tr-none py-2 px-3 text-gray-800 dark:text-gray-200 shadow-sm border border-primary border-opacity-20 dark:border-opacity-30;
+    @apply bg-primary bg-opacity-10 dark:bg-opacity-25 rounded-lg rounded-tr-none py-2 px-3 text-gray-800 dark:text-gray-100 shadow-sm border border-primary border-opacity-20 dark:border-opacity-40;
   }
   
   .message-image {

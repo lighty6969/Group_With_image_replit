@@ -1,6 +1,6 @@
 # TextRoom Deployment Guide
 
-This document provides instructions for deploying the TextRoom chat application to production environments.
+This document provides instructions for deploying the TextRoom chat application to production environments. The application now supports image sharing, theme customization, and mobile-friendly UI.
 
 ## Table of Contents
 
@@ -15,7 +15,8 @@ This document provides instructions for deploying the TextRoom chat application 
    - [Self-Hosting](#self-hosting)
 6. [WebSocket Configuration](#websocket-configuration)
 7. [Post-Deployment Verification](#post-deployment-verification)
-8. [Troubleshooting](#troubleshooting)
+8. [Feature Configuration](#feature-configuration)
+9. [Troubleshooting](#troubleshooting)
 
 ## Prerequisites
 
@@ -168,6 +169,42 @@ After deployment, test your application by:
 3. Sending messages and verifying they appear in real-time
 4. Checking that room information is displayed correctly
 5. Verifying that users can join existing rooms via room ID
+6. Testing image uploads and sharing between users
+7. Verifying dark/light theme switching works properly
+8. Testing the application on mobile devices
+
+## Feature Configuration
+
+The TextRoom application includes several key features that can be customized:
+
+### Theme Customization
+
+The application's theme can be modified by editing the `theme.json` file:
+
+```json
+{
+  "variant": "vibrant", // Options: "professional", "tint", "vibrant"
+  "primary": "hsl(210, 100%, 50%)", // Primary color in HSL format
+  "appearance": "system", // Options: "light", "dark", "system"
+  "radius": 0.6 // Border radius size
+}
+```
+
+### Image Sharing
+
+Image sharing is enabled by default with the following constraints:
+- Maximum file size: 5MB
+- Supported formats: JPEG, PNG, GIF
+- Images are stored as data URLs (base64 encoded)
+
+To modify these constraints, edit the `handleFileChange` function in `client/src/components/MessageInput.tsx`.
+
+### Mobile Responsiveness
+
+The application is optimized for mobile devices with:
+- Responsive layout that adapts to screen size
+- Touch-friendly components
+- Collapsible sidebar on small screens
 
 ## Troubleshooting
 
@@ -189,6 +226,16 @@ Common issues and solutions:
 4. **Environment variable issues**
    - Confirm environment variables are properly set in your deployment platform
    - Check for typos in variable names
+
+5. **Image upload failures**
+   - Verify file size is under 5MB
+   - Ensure the image format is supported (JPEG, PNG, GIF)
+   - Check browser console for any JavaScript errors
+
+6. **Theme switching issues**
+   - Verify theme.json has valid values
+   - Check browser localStorage access permissions
+   - Ensure CSS is properly loading
 
 ---
 
