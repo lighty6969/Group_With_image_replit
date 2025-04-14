@@ -193,7 +193,7 @@ The application's theme can be modified by editing the `theme.json` file:
 ### Image Sharing
 
 Image sharing is enabled by default with the following constraints:
-- Maximum file size: 5MB
+- Maximum file size: 50MB
 - Supported formats: JPEG, PNG, GIF
 - Images are stored as data URLs (base64 encoded)
 
@@ -228,7 +228,7 @@ Common issues and solutions:
    - Check for typos in variable names
 
 5. **Image upload failures**
-   - Verify file size is under 5MB
+   - Verify file size is under 50MB
    - Ensure the image format is supported (JPEG, PNG, GIF)
    - Check browser console for any JavaScript errors
 

@@ -62,11 +62,11 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
       return;
     }
     
-    // Check file size (limit to 5MB)
-    if (file.size > 5 * 1024 * 1024) {
+    // Check file size (limit to 50MB)
+    if (file.size > 50 * 1024 * 1024) {
       toast({
         title: 'File too large',
-        description: 'Image must be smaller than 5MB',
+        description: 'Image must be smaller than 50MB',
         variant: 'destructive'
       });
       return;
