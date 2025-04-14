@@ -3,9 +3,10 @@ import { useParams, useLocation } from 'wouter';
 import { useChat } from '@/hooks/useChat';
 import MessageInput from '@/components/MessageInput';
 import RoomInfo from '@/components/RoomInfo';
-import { Message } from '@shared/schema';
+import { Message, MessageType } from '@shared/schema';
 import { useToast } from '@/hooks/use-toast';
 import { useIsMobile as useMobile } from '@/hooks/use-mobile';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 const ChatRoom: React.FC = () => {
   const params = useParams<{ id: string }>();
@@ -91,22 +92,35 @@ const ChatRoom: React.FC = () => {
     return (
       <div key={message.id} className={isCurrentUser ? "message-self" : "message-others"}>
         <div className={`flex items-center space-x-1 ${isCurrentUser ? "self-end" : ""}`}>
-          <span className="text-xs font-medium text-gray-700">
+          <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
             {isCurrentUser ? (
               <>
-                <span className="text-xs text-gray-400">{formatTime(message.timestamp)}</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">{formatTime(message.timestamp)}</span>
                 <span className="ml-1 text-xs font-medium text-primary">You ({message.username})</span>
               </>
             ) : (
               <>
-                <span className="text-xs font-medium text-gray-700">{message.username}</span>
-                <span className="text-xs text-gray-400">{formatTime(message.timestamp)}</span>
+                <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{message.username}</span>
+                <span className="ml-1 text-xs text-gray-400 dark:text-gray-500">{formatTime(message.timestamp)}</span>
               </>
             )}
           </span>
         </div>
         <div className={isCurrentUser ? "message-bubble-self" : "message-bubble-others"}>
-          {message.content}
+          {/* Message content based on type */}
+          {message.type === MessageType.IMAGE && message.imageUrl ? (
+            <>
+              {message.content && <p className="mb-2">{message.content}</p>}
+              <img 
+                src={message.imageUrl} 
+                alt={`Image shared by ${message.username}`}
+                className="message-image"
+                loading="lazy"
+              />
+            </>
+          ) : (
+            message.content
+          )}
         </div>
       </div>
     );
@@ -114,9 +128,9 @@ const ChatRoom: React.FC = () => {
   
   if (!roomId || !username) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-50">
+      <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900">
         <div className="animate-pulse flex flex-col items-center">
-          <div className="text-lg">Joining room...</div>
+          <div className="text-lg dark:text-gray-200">Joining room...</div>
         </div>
       </div>
     );
@@ -131,8 +145,9 @@ const ChatRoom: React.FC = () => {
             You are <span>{username}</span>
           </p>
         </div>
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center" title="People in room">
+        <div className="flex items-center space-x-2">
+          <ThemeToggle />
+          <div className="flex items-center ml-2" title="People in room">
             <span className="material-icons text-sm mr-1">people</span>
             <span>{users.length}</span>
           </div>
@@ -156,8 +171,8 @@ const ChatRoom: React.FC = () => {
         {/* Main Chat Area */}
         <div className="flex flex-col flex-grow h-full relative">
           {/* Messages Container */}
-          <div className="message-area flex-grow overflow-y-auto p-4 space-y-3 bg-gray-50">
-            <div className="text-center py-2 px-4 text-xs text-gray-500 bg-gray-100 rounded-full inline-block mx-auto">
+          <div className="message-area flex-grow overflow-y-auto p-4 space-y-3 bg-gray-50 dark:bg-gray-900">
+            <div className="text-center py-2 px-4 text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-full inline-block mx-auto">
               Welcome to the room! Messages will disappear when everyone leaves.
             </div>
             
