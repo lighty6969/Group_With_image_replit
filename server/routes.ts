@@ -230,10 +230,10 @@ function handleSendMessage(ws: ClientConnection, payload: any): void {
       return sendErrorToClient(ws, 'You are not in this room');
     }
     
-    // Create the message
+    // Create the message with the user's current username
     const message: Omit<Message, 'id'> = {
       roomId,
-      username: ws.username!,
+      username: ws.username || 'Anonymous',
       content,
       timestamp: new Date(),
       type,

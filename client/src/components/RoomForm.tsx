@@ -42,7 +42,8 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, isSubmitting = false }) =
   };
 
   const handleSubmit = (data: FormData) => {
-    const finalUsername = data.username?.trim() || randomUsername;
+    // Only use entered username if it's not empty, otherwise keep it undefined for optionality
+    const finalUsername = data.username?.trim() ? data.username.trim() : randomUsername;
     onSubmit(data.roomId, finalUsername);
   };
 
