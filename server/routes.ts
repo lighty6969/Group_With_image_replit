@@ -6,6 +6,7 @@ import {
   WebSocketMessage, 
   WebSocketMessageType, 
   Message, 
+  MessageType,
   RoomUser,
   joinRoomSchema,
   sendMessageSchema
@@ -184,6 +185,7 @@ function handleJoinRoom(ws: ClientConnection, payload: any): void {
       username: 'System',
       content: `${finalUsername} joined the room`,
       timestamp: new Date(),
+      type: MessageType.SYSTEM,
       isSystem: true
     };
     
@@ -221,7 +223,7 @@ function handleJoinRoom(ws: ClientConnection, payload: any): void {
 function handleSendMessage(ws: ClientConnection, payload: any): void {
   try {
     // Validate send message payload
-    const { roomId, content } = sendMessageSchema.parse(payload);
+    const { roomId, content, type = MessageType.TEXT, imageUrl } = sendMessageSchema.parse(payload);
     
     // Check if client is in the room they're trying to send a message to
     if (ws.roomId !== roomId) {
@@ -234,7 +236,9 @@ function handleSendMessage(ws: ClientConnection, payload: any): void {
       username: ws.username!,
       content,
       timestamp: new Date(),
-      isSystem: false
+      type,
+      isSystem: type === MessageType.SYSTEM,
+      imageUrl: type === MessageType.IMAGE ? imageUrl : undefined
     };
     
     // Add message to the room

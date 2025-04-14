@@ -18,13 +18,21 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
 // Message type definitions
+export enum MessageType {
+  TEXT = 'text',
+  IMAGE = 'image',
+  SYSTEM = 'system'
+}
+
 export type Message = {
   id: string;
   roomId: string;
   username: string;
   content: string;
   timestamp: Date;
+  type: MessageType;
   isSystem: boolean;
+  imageUrl?: string;
 };
 
 // Room type definitions
@@ -66,7 +74,9 @@ export const joinRoomSchema = z.object({
 
 export const sendMessageSchema = z.object({
   roomId: z.string().min(1),
-  content: z.string().min(1)
+  content: z.string().min(1),
+  type: z.nativeEnum(MessageType).default(MessageType.TEXT),
+  imageUrl: z.string().optional()
 });
 
 export type JoinRoomPayload = z.infer<typeof joinRoomSchema>;
