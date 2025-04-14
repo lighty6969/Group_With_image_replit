@@ -128,9 +128,10 @@ const ChatRoom: React.FC = () => {
   
   if (!roomId || !username) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-950">
         <div className="animate-pulse flex flex-col items-center">
-          <div className="text-lg dark:text-gray-200">Joining room...</div>
+          <div className="text-lg font-medium text-gray-800 dark:text-gray-100">Joining room...</div>
+          <div className="mt-3 w-24 h-1 bg-primary/60 rounded"></div>
         </div>
       </div>
     );
@@ -172,15 +173,11 @@ const ChatRoom: React.FC = () => {
         <div className="flex flex-col flex-grow h-full relative">
           {/* Messages Container */}
           <div className="message-area flex-grow overflow-y-auto p-4 space-y-3 bg-gray-50 dark:bg-gray-900">
-            <div className="text-center py-2 px-4 text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded-full inline-block mx-auto">
+            <div className="text-center py-2 px-4 text-xs text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full inline-block mx-auto">
               Welcome to the room! Messages will disappear when everyone leaves.
             </div>
             
-            {messages.map((message) => (
-              <React.Fragment key={message.id}>
-                {renderMessage(message)}
-              </React.Fragment>
-            ))}
+            {messages.map((message) => renderMessage(message))}
             
             <div ref={messagesEndRef} />
           </div>

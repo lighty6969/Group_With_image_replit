@@ -237,6 +237,11 @@ Common issues and solutions:
    - Check browser localStorage access permissions
    - Ensure CSS is properly loading
 
+7. **Console warnings in development**
+   - Some React warnings may appear in the development console
+   - These are related to Replit's development environment adding metadata attributes
+   - These warnings do not affect functionality and can be safely ignored in production
+
 ---
 
 For any additional support, please reach out to the development team or open an issue on the project repository.
