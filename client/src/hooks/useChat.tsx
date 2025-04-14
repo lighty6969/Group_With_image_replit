@@ -10,6 +10,7 @@ import {
 import { 
   WebSocketMessageType, 
   Message, 
+  MessageType,
   RoomUser,
   Room
 } from '@shared/schema';

@@ -54,15 +54,15 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, isSubmitting = false }) =
           name="roomId"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="text-sm font-medium text-gray-700">Room ID</FormLabel>
+              <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Room ID</FormLabel>
               <FormControl>
                 <Input 
                   {...field} 
                   placeholder="Enter a room ID" 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
               </FormControl>
-              <p className="text-xs text-gray-500">Enter an existing room ID or create a new one</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Enter an existing room ID or create a new one</p>
               <FormMessage />
             </FormItem>
           )}
@@ -73,13 +73,13 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, isSubmitting = false }) =
           name="username"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="text-sm font-medium text-gray-700">Your Name (Optional)</FormLabel>
+              <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Your Name (Optional)</FormLabel>
               <div className="flex space-x-2">
                 <FormControl>
                   <Input 
                     {...field} 
                     placeholder="Leave empty for random name" 
-                    className="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="flex-grow px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </FormControl>
                 <Button 
@@ -87,14 +87,14 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, isSubmitting = false }) =
                   variant="ghost" 
                   size="icon" 
                   onClick={generateRandomName}
-                  className="p-2 text-primary hover:bg-primary hover:bg-opacity-10 rounded-md"
+                  className="p-2 text-primary hover:bg-primary hover:bg-opacity-10 dark:hover:bg-opacity-20 rounded-md"
                   title="Generate random name"
                 >
                   <RefreshCw className="h-5 w-5" />
                 </Button>
               </div>
-              <p className="text-xs text-gray-500">
-                Random name: <span className="font-medium">{randomUsername}</span>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Random name: <span className="font-medium dark:text-gray-300">{randomUsername}</span>
               </p>
               <FormMessage />
             </FormItem>

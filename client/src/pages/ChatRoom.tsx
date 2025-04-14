@@ -176,7 +176,11 @@ const ChatRoom: React.FC = () => {
               Welcome to the room! Messages will disappear when everyone leaves.
             </div>
             
-            {messages.map(renderMessage)}
+            {messages.map((message) => (
+              <React.Fragment key={message.id}>
+                {renderMessage(message)}
+              </React.Fragment>
+            ))}
             
             <div ref={messagesEndRef} />
           </div>
