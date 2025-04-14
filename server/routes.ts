@@ -142,8 +142,8 @@ function handleJoinRoom(ws: ClientConnection, payload: any): void {
     // Validate join room payload
     const { roomId, username } = joinRoomSchema.parse(payload);
     
-    // Generate a username if not provided
-    const finalUsername = username || generateUsername();
+    // Generate a username if not provided or empty
+    const finalUsername = username?.trim() ? username.trim() : generateUsername();
     
     // Create or get the room
     let room = storage.getRoom(roomId);

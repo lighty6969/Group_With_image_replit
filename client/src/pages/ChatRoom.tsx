@@ -96,11 +96,11 @@ const ChatRoom: React.FC = () => {
             {isCurrentUser ? (
               <>
                 <span className="text-xs text-gray-400 dark:text-gray-500">{formatTime(message.timestamp)}</span>
-                <span className="ml-1 text-xs font-medium text-primary">You ({message.username})</span>
+                <span className="ml-1 text-xs font-semibold text-primary">You ({message.username})</span>
               </>
             ) : (
               <>
-                <span className="text-xs font-medium text-gray-700 dark:text-gray-300">{message.username}</span>
+                <span className="text-xs font-semibold text-primary dark:text-primary/90">{message.username}</span>
                 <span className="ml-1 text-xs text-gray-400 dark:text-gray-500">{formatTime(message.timestamp)}</span>
               </>
             )}
@@ -143,7 +143,7 @@ const ChatRoom: React.FC = () => {
         <div>
           <h1 className="text-xl font-medium">Room: <span>{roomId}</span></h1>
           <p className="text-xs">
-            You are <span>{username}</span>
+            You are <span className="font-medium text-white/80">{username}</span>
           </p>
         </div>
         <div className="flex items-center space-x-2">

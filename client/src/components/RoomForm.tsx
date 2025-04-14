@@ -42,8 +42,8 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, isSubmitting = false }) =
   };
 
   const handleSubmit = (data: FormData) => {
-    // Only use entered username if it's not empty, otherwise keep it undefined for optionality
-    const finalUsername = data.username?.trim() ? data.username.trim() : randomUsername;
+    // Use the entered username if provided, otherwise use the random username
+    const finalUsername = data.username?.trim() || randomUsername;
     onSubmit(data.roomId, finalUsername);
   };
 
@@ -74,12 +74,17 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, isSubmitting = false }) =
           name="username"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">Your Name (Optional)</FormLabel>
+              <div className="flex justify-between items-center">
+                <FormLabel className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Your Name <span className="text-xs font-normal text-gray-400">(Optional)</span>
+                </FormLabel>
+                <span className="text-xs text-primary">Will use random name if empty</span>
+              </div>
               <div className="flex space-x-2">
                 <FormControl>
                   <Input 
                     {...field} 
-                    placeholder="Leave empty for random name" 
+                    placeholder="Enter your preferred name" 
                     className="flex-grow px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   />
                 </FormControl>
@@ -95,7 +100,7 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit, isSubmitting = false }) =
                 </Button>
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                Random name: <span className="font-medium dark:text-gray-300">{randomUsername}</span>
+                Default random name: <span className="font-medium dark:text-gray-300">{randomUsername}</span>
               </p>
               <FormMessage />
             </FormItem>
