@@ -101,6 +101,7 @@ export function useChat({ initialRoomId, initialUsername }: UseChatProps = {}) {
         username: 'System',
         content: `${username} left the room`,
         timestamp: new Date(timestamp),
+        type: MessageType.SYSTEM,
         isSystem: true
       };
       
@@ -165,16 +166,24 @@ export function useChat({ initialRoomId, initialUsername }: UseChatProps = {}) {
   }, [isConnected, showError]);
   
   // Send a message to the current room
-  const sendChatMessage = useCallback((content: string) => {
+  const sendChatMessage = useCallback((content: string, type = MessageType.TEXT, imageUrl?: string) => {
     if (!isConnected || !roomId) {
       showError('Not connected to a room');
       return false;
     }
     
-    return sendMessage(WebSocketMessageType.SEND_MESSAGE, {
+    const messagePayload: any = {
       roomId,
-      content
-    });
+      content,
+      type
+    };
+    
+    // Add image URL for image messages
+    if (type === MessageType.IMAGE && imageUrl) {
+      messagePayload.imageUrl = imageUrl;
+    }
+    
+    return sendMessage(WebSocketMessageType.SEND_MESSAGE, messagePayload);
   }, [isConnected, roomId, showError]);
   
   // Leave the current room
